@@ -1,6 +1,6 @@
 baseURL = 'https://bielzaoo.github.io/'
 languageCode = 'en-us'
-title = 'bielzao'
+title = "bielzao"
 theme = "PaperMod"
 paginate = 10
 publishDir = "docs"
