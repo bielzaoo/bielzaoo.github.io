@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on bielzao</title>
     <link>https://bielzaoo.github.io/posts/</link>
     <description>Recent content in Posts on bielzao</description>
-    <generator>Hugo -- 0.125.3</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 24 Apr 2024 00:47:56 -0300</lastBuildDate>
     <atom:link href="https://bielzaoo.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
@@ -13,10 +13,7 @@
       <link>https://bielzaoo.github.io/posts/proftpd-exploit/</link>
       <pubDate>Wed, 24 Apr 2024 00:47:56 -0300</pubDate>
       <guid>https://bielzaoo.github.io/posts/proftpd-exploit/</guid>
-      <description>ProFTPd 1.3.5 mod_copy exploit Opa, eai! Tudo certo? Vamos treinar a escrita de exploits?
-Vamos escrever um simples exploit para a vulnerabilidade encontrada no ProFTPd na versão 1.3.5.
-OBS: Obviamente não fui eu quem descobriu tal vulnerabilidade, este artigo tem como objetivo apenas treinar a escrita de exploits e juntar programação com hacking!
-Sobre a vulnerabilidade&amp;hellip; Bom, para você que não conhece essa vulnerabilidade ainda, basicamente, ela consiste no fato de qualquer cliente, mesmo não estando autenticado no servidor que está rodando essa versão vulnerável do ProFTPd, consegue executar dois comando do FTP: o SITE CPFR e o SITE CPTO.</description>
+      <description>ProFTPd 1.3.5 mod_copy exploit Opa, eai! Tudo certo? Vamos treinar a escrita de exploits?&#xA;Vamos escrever um simples exploit para a vulnerabilidade encontrada no ProFTPd na versão 1.3.5.&#xA;OBS: Obviamente não fui eu quem descobriu tal vulnerabilidade, este artigo tem como objetivo apenas treinar a escrita de exploits e juntar programação com hacking!&#xA;Sobre a vulnerabilidade&amp;hellip; Bom, para você que não conhece essa vulnerabilidade ainda, basicamente, ela consiste no fato de qualquer cliente, mesmo não estando autenticado no servidor que está rodando essa versão vulnerável do ProFTPd, consegue executar dois comando do FTP: o SITE CPFR e o SITE CPTO.</description>
     </item>
   </channel>
 </rss>
