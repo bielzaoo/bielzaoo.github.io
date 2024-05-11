@@ -1,26 +1,26 @@
 <!DOCTYPE html>
 <html lang="en" dir="auto">
 
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="noindex, nofollow">
+<meta name="robots" content="index, follow">
 <title>[HTB] Return | bielzao</title>
 <meta name="keywords" content="">
 <meta name="description" content="[HTB] Return Opa! Eai, tudo certo?
 Essa máquina é bem bacana e tranquila para quem tem dificuldades como exploração de ambientes Windows (Como eu, hehe), sabemos que encarar o Windão nos CTF da vida não é tão fácil assim. Mas enfim, chega de enrolação e vamos pro hacking!
 Conhecendo o alvo Não podemos sair atitando sem mirar e conhecer o território inimigo. Então vamos começar conhecendo quais portas estão abertas no nosso alvo:">
 <meta name="author" content="">
-<link rel="canonical" href="http://localhost:1313/posts/return/">
+<link rel="canonical" href="https://bielzaoo.github.io/posts/return/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.b609c58d5c11bb90b1a54e04005d74ad1ddf22165eb79f5533967e57df9c3b50.css" integrity="sha256-tgnFjVwRu5CxpU4EAF10rR3fIhZet59VM5Z&#43;V9&#43;cO1A=" rel="preload stylesheet" as="style">
-<link rel="icon" href="http://localhost:1313/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
-<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
-<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<link rel="icon" href="https://bielzaoo.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://bielzaoo.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://bielzaoo.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://bielzaoo.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://bielzaoo.github.io/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/return/">
+<link rel="alternate" hreflang="en" href="https://bielzaoo.github.io/posts/return/">
 <noscript>
     <style>
         #theme-toggle,
@@ -58,6 +58,73 @@ Conhecendo o alvo Não podemos sair atitando sem mirar e conhecer o território 
 
     </style>
 </noscript>
+  
+
+<meta property="og:title" content="[HTB] Return" />
+<meta property="og:description" content="[HTB] Return Opa! Eai, tudo certo?
+Essa máquina é bem bacana e tranquila para quem tem dificuldades como exploração de ambientes Windows (Como eu, hehe), sabemos que encarar o Windão nos CTF da vida não é tão fácil assim. Mas enfim, chega de enrolação e vamos pro hacking!
+Conhecendo o alvo Não podemos sair atitando sem mirar e conhecer o território inimigo. Então vamos começar conhecendo quais portas estão abertas no nosso alvo:" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://bielzaoo.github.io/posts/return/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-05-11T01:32:41-03:00" />
+<meta property="article:modified_time" content="2024-05-11T01:32:41-03:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[HTB] Return"/>
+<meta name="twitter:description" content="[HTB] Return Opa! Eai, tudo certo?
+Essa máquina é bem bacana e tranquila para quem tem dificuldades como exploração de ambientes Windows (Como eu, hehe), sabemos que encarar o Windão nos CTF da vida não é tão fácil assim. Mas enfim, chega de enrolação e vamos pro hacking!
+Conhecendo o alvo Não podemos sair atitando sem mirar e conhecer o território inimigo. Então vamos começar conhecendo quais portas estão abertas no nosso alvo:"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://bielzaoo.github.io/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "[HTB] Return",
+      "item": "https://bielzaoo.github.io/posts/return/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "[HTB] Return",
+  "name": "[HTB] Return",
+  "description": "[HTB] Return Opa! Eai, tudo certo?\nEssa máquina é bem bacana e tranquila para quem tem dificuldades como exploração de ambientes Windows (Como eu, hehe), sabemos que encarar o Windão nos CTF da vida não é tão fácil assim. Mas enfim, chega de enrolação e vamos pro hacking!\nConhecendo o alvo Não podemos sair atitando sem mirar e conhecer o território inimigo. Então vamos começar conhecendo quais portas estão abertas no nosso alvo:",
+  "keywords": [
+    
+  ],
+  "articleBody": "[HTB] Return Opa! Eai, tudo certo?\nEssa máquina é bem bacana e tranquila para quem tem dificuldades como exploração de ambientes Windows (Como eu, hehe), sabemos que encarar o Windão nos CTF da vida não é tão fácil assim. Mas enfim, chega de enrolação e vamos pro hacking!\nConhecendo o alvo Não podemos sair atitando sem mirar e conhecer o território inimigo. Então vamos começar conhecendo quais portas estão abertas no nosso alvo:\nMuitas portas! Maaas, vamos focar nas que mais importam para nós (Vai por mim, as outras não vão te levar a lugar nenhum, bem, não neste cenário hehe), e lá vamos nós, mais um scan:\nOk, agora temos uma visão mais apurada do que está rodando no máquina!\nEu gosto de fragmentar o scan desta forma, isso me possibilita ter uma visão geral dos serviços.\nPrinter Admin Panel Dando uma olhada no que está rodando na porta 80, vemos que se trata de um “Painel Administrativo de Impressora”, interessante!\nDando uma clicada na aba settings para ver no que dá, vemos que parace que podemos alterar as configurações do serviço, interessante!\nGanhando acesso ao alvo Bom, um usuário nós já temos: svc-printer. Anota ai!\nAgora precisamos da senha. Você pode pensar: ah! A senha está ali, basta ir no código fonte e alterar o atributo type da tag input de password para text e a senha será mostrada! Sinto em lhe dizer, mas se você pensou assim, conseguiram te enganar, acontece hehe!\nVeja o source da página:\nPois é, os asteriscos foram colocados ali hardcoded.\nMaaas, não desanimemos! Veja, o serviço está usando o LDAP e o scan anterior confirma que a porta do LDAP está aberta. E, dependendo da forma como o LDAP estiver configurado, ele expõe as credenciais ao se autenticar no servidor.\nOk! Com isso em mente, vamos fazer o seguinte: iniciaremos o netcat ouvindo na mesma porta usada pelo LDAP (porta 389) na nossa máquina local, e lá no site, na opção server address colocaremos o IP a nossa máquina atacante, de forma que quando clicarmos em update no site o serviço que está sendo executado na máquina irá tentar se autenticar no nosso servidor LDAP falso, expondo assim as credenciais.\nVamos que vamos!\nJá subi o netcat, e fiz a alteração lá no site (lembre-se, altere server address para o ip da sua máquina), após isso, cliquei em update, e voltando lá no netcat, veja que deu bom:\nBeleza, mas e agora? Onde usaremos essas credênciais?\nSimples, vimos também no scan que o WinRM está rodando na máquina! Pois então vamos tentar usar essas credenciais!\nUsando o Evil-WinRM, conseguimos acessar a máquina:\nBeleza! Agora precisamos upar nossos privilégios. Vamos dar uma olhada em quais grupos nosso usuário pertence:\nAh! Vemos que fazemos parte do grupo Server Operators, tá, mas eai?\nEste grupo, basicamente, nos da permissão configurar serviços no servidor! Tá, mas eai? (De novo hehe)\nIsso quer dizer que podemos escolher um serviço que seja executado como System no servidor e fazermos com que este serviço nos ajude a elevar nossos privilégios. Simplemente iremos alterar o atributo binPath do serviço VSS (Este é um servio padrão do sistema que roda como System, justamente o que precisamos) fazendo-o apontar para o netcat que faremos upload para o servidor e então nos dê uma reverse shell como System no servidor.\nCaso ainda não tenha entendido, não se preocupe, veremos agora como funciona!\nEstou usando a Pwnbox disponibilizada pelo HTB, como você já deve ter notado pelo meu prompt. Na pwnbox existe um diretório que contém o netcat para Windows. O Kali Linux também tem, se eu não me engano. Caso você esteja usnado uma outra distro que não seja estas, uma rápida pesquisada “netcat windows” ou “nc64.exe” no Google, vocẽ já consegue achar.\nVamos fazer upload do netcat:\nBeleza, agora vamos alterar o binPath do serviço VSS.\nMas antes, podemos ver se realemente esse serviço roda como System, veja:\nEm SERVICE_START_NAME vemos lá LocalSystem.\nBom, agora podemos alterar o binPath deste serviço:\nAgora, basta iniciar o netcat na nossa máquina local ouvindo na mesma porta usada no comando acima (7777, no caso), após iniciado o netcat, vamos reiniciar o serviço para que o comando seja executado:\nAo voltarmos la no netcat, vemos que recebemos a conexão:\nPorém, como visto na imagem, a shell recebida não é nada estável. rapidamente somos desconectados. Isso se deve ao fato de que os executáveis usados em serviços devem ser especialmente preparados para isso, portanto, executáveis “normais” sofrem problemas neste caso.\nHá duas soluções para uma shell mais estável, vamos lá!\nSem o Metasploit Podemos conseguir uma shell mais estável sem o metasploit, alterando o binPath da seguinte forma:\nDesta forma, estamos executando o netcat usando o cmd.exe, de forma que quando o processo do cmd.exe morrer (Lembre-se que serviços não conseguem exeeutar muito bem executáveis que não foram especialmente criados para serem serviços) o netcat permanecerá executando.\nVeja que não cai mais o conexão:\n.\nCom o Metasploit Podemos usar o Metasploit para conseguir estabilidade e ainda conseguirmos uma shell meterpreter.\nComeçaremos criando um executável usando o msfvenom:\nAgora, basta fazermos upload dele para o alvo:\nAgora, precisamos alterar o binPath do serviço de forma que ele aponte para o nosso payload:\nVamos configurar o Metasploit para receber a conexão e já deixá-lo esperando por conexões:\nBasta agora, reiniciar o serviço como feito anteriormente (sc.exe stop vss e sc.exe start vss), e recebemos então a conexão:\nE veja que já somos System. Porém ainda não acabou, se você demorar muito verá que a conexão cairá. Para que isso não ocorra, precisamos migrar para um processo que execute como System para manter nossos privilégios de System e seja mais estável.\nListando os processos:\nVemos o svchost, executa como System e também é estável. Beleza! Anotando o seu PID, vamos migrar para ele:\nE veja que ainda somos System e a conexão está estável!\nFlags E aqui estão as flags:\nÉ isso! Bom, te espero no próximo writeup!\nFique com Deus!\n",
+  "wordCount" : "1002",
+  "inLanguage": "en",
+  "datePublished": "2024-05-11T01:32:41-03:00",
+  "dateModified": "2024-05-11T01:32:41-03:00",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://bielzaoo.github.io/posts/return/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "bielzao",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://bielzaoo.github.io/favicon.ico"
+    }
+  }
+}
+</script>
 </head>
 
 <body class="" id="top">
@@ -75,7 +142,7 @@ Conhecendo o alvo Não podemos sair atitando sem mirar e conhecer o território 
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="http://localhost:1313/" accesskey="h" title="bielzao (Alt + H)">bielzao</a>
+            <a href="https://bielzaoo.github.io/" accesskey="h" title="bielzao (Alt + H)">bielzao</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -110,12 +177,6 @@ Conhecendo o alvo Não podemos sair atitando sem mirar e conhecer o território 
     
     <h1 class="post-title entry-hint-parent">
       [HTB] Return
-      <span class="entry-hint" title="Draft">
-        <svg xmlns="http://www.w3.org/2000/svg" height="35" viewBox="0 -960 960 960" fill="currentColor">
-          <path
-            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
-        </svg>
-      </span>
     </h1>
     <div class="post-meta"><span title='2024-05-11 01:32:41 -0300 -03'>May 11, 2024</span>
 
@@ -241,7 +302,7 @@ Conhecendo o alvo Não podemos sair atitando sem mirar e conhecer o território 
     </main>
     
 <footer class="footer">
-        <span>&copy; 2024 <a href="http://localhost:1313/">bielzao</a></span> · 
+        <span>&copy; 2024 <a href="https://bielzaoo.github.io/">bielzao</a></span> · 
 
     <span>
         Powered by
