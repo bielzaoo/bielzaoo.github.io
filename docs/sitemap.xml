@@ -2,6 +2,9 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://bielzaoo.github.io/posts/htb-return/</loc>
+    <lastmod>2024-05-10T23:26:03-03:00</lastmod>
+  </url><url>
     <loc>https://bielzaoo.github.io/</loc>
     <lastmod>2024-05-10T23:26:03-03:00</lastmod>
   </url><url>

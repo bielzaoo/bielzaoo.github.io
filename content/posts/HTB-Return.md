@@ -1,10 +1,12 @@
 +++
 title = '[HTB] Return'
 date = 2024-05-10T23:26:03-03:00
-draft = true
+draft = false
 +++
 
 # [HTB] Return
+
+![htb-icon](https://github.com/bielzaoo/bielzaoo.github.io/blob/main/images/htb.png?raw=true)
 
 Opa! Eai, tudo certo?
 
