@@ -1,5 +1,5 @@
 +++
-title = '[HTB] Return'
+title = 'HTB Return'
 date = 2024-05-10T23:26:03-03:00
 draft = false
 +++

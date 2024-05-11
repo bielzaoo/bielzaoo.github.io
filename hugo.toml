@@ -3,4 +3,4 @@ languageCode = 'en-us'
 title = "bielzao"
 theme = "PaperMod"
 paginate = 10
-publishDir = "docs"
+publishDir = "./docs"
