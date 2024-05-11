@@ -2,25 +2,11 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>bielzao</title>
-    <link>https://bielzaoo.github.io/</link>
+    <link>http://localhost:1313/</link>
     <description>Recent content on bielzao</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 10 May 2024 23:26:03 -0300</lastBuildDate>
-    <atom:link href="https://bielzaoo.github.io/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>[HTB] Return</title>
-      <link>https://bielzaoo.github.io/posts/htb-return/</link>
-      <pubDate>Fri, 10 May 2024 23:26:03 -0300</pubDate>
-      <guid>https://bielzaoo.github.io/posts/htb-return/</guid>
-      <description>[HTB] Return Opa! Eai, tudo certo?&#xA;Essa máquina é bem bacana e tranquila para quem tem dificuldades como exploração de ambientes Windows (Como eu, hehe), sabemos que encarar o Windão nos CTF da vida não é tão fácil assim. Mas enfim, chega de enrolação e vamos pro hacking!&#xA;Conhecendo o alvo Não podemos sair atitando sem mirar e conhecer o território inimigo. Então vamos começar conhecendo quais portas estão abertas no nosso alvo:</description>
-    </item>
-    <item>
-      <title>Proftpd 1.3.5 mod_copy Exploit</title>
-      <link>https://bielzaoo.github.io/posts/proftpd-exploit/</link>
-      <pubDate>Wed, 24 Apr 2024 00:47:56 -0300</pubDate>
-      <guid>https://bielzaoo.github.io/posts/proftpd-exploit/</guid>
-      <description>ProFTPd 1.3.5 mod_copy exploit Opa, eai! Tudo certo? Vamos treinar a escrita de exploits?&#xA;Vamos escrever um simples exploit para a vulnerabilidade encontrada no ProFTPd na versão 1.3.5.&#xA;OBS: Obviamente não fui eu quem descobriu tal vulnerabilidade, este artigo tem como objetivo apenas treinar a escrita de exploits e juntar programação com hacking!&#xA;Sobre a vulnerabilidade&amp;hellip; Bom, para você que não conhece essa vulnerabilidade ainda, basicamente, ela consiste no fato de qualquer cliente, mesmo não estando autenticado no servidor que está rodando essa versão vulnerável do ProFTPd, consegue executar dois comando do FTP: o SITE CPFR e o SITE CPTO.</description>
-    </item>
+    <lastBuildDate></lastBuildDate>
+    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>
