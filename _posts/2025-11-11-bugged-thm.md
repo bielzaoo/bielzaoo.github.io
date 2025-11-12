@@ -177,7 +177,7 @@ mosquitto_pub -h 10.201.90.42 -t 'XD2rfR9Bez/GqMpRSEobh/TvLQehMg0E/sub' -m {HELP
 
 Veja que recebemos mais uma mensagem, também base64 encoded:
 
-![help](./img/help.png)
+![help](../assets/img/bugged/help.pg)
 
 Vamos fazer um decode dela:
 
