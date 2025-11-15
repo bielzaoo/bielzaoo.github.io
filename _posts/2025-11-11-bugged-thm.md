@@ -4,6 +4,7 @@ date: 2025-11-11 00:00:00 +0000
 categories: [writeups]
 tags: ["writeups","ctf","tryhackme"]
 ---
+![Bugged](../assets/img/bugged/bugged.png)
 
 # Bugged
 
@@ -13,22 +14,16 @@ tags: ["writeups","ctf","tryhackme"]
 
 ---
 
-## 1) Sobre a Máquina
+## Sobre a Máquina
 
 Trata-se de uma máquina Linux, executando um Mosquitto MQTT, objetivo é acessar esse serviço e se comunicar com um dispositivo onde encotraremos a flag.
 
-## 2) Ambiente
+## Ambiente
 
 - SO atacante: Parrot OS
 - Ferramentas principais: `nmap`, `mosquitto_sub` e `mosquitto_pub`.
 
-## 3) Metodologia
-
-**Recon:** Foi feito um mapemanto inicial de quais portas estavam abertas no alvo de modo a nos dar uma visão geral do que estamos lidando.  
-**Enumeração** Utilizando da informação obtida na etapa anterior, foi feita um análise de quais informações encotraríamos no serviço, interagido diretamente com ele.  
-**Expĺoração:** Interagimos com o serviço de modo a conseguir acesso a informações presentes em um dispositivo que também se comunicava com o mesmo.  
-
-## 4) Passo a passos
+## Ataque
 
 ### Recon
 
@@ -52,8 +47,6 @@ PORT     STATE SERVICE
 22/tcp   open  ssh
 1883/tcp open  mqtt
 ```
-
-### Enumeration
 
 Hmmm, um serviço interessante! Vamos fazer um scan mais completo:
 
@@ -289,7 +282,7 @@ Excelente! Sabendo disso, vamos tentar listar os arquivos existentes no disposit
 
 E achamos a flag! Para abrir a flag, basta repetir o mesmo processo, trocando apenas de id para cat ./flag.txt e pronto, terás a flag!
 
-## 5) Conclusão
+---
 
 Curitu? Eu particularmente nunca tinha ouvido falar neste serviço, muito bacana! Percebeu como não usamos nenhuma outra tool além do bom e velho `nmap` e as tools para interagir com o **Mosquitto**? Portanto, veja como é mais importante dominar todo o processo e suas bases, ao invés de dominar apenas ferramentas.
 
