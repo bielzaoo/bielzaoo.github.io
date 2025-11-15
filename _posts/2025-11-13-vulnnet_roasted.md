@@ -1,5 +1,5 @@
 ---
-title: "VulnNet - Roasted | TryHackMe"
+title: "VulnNet: Roasted | TryHackMe"
 date: 2025-11-13 00:00:00 +0000
 categories: [writeups]
 tags: ["writeups","ctf","tryhackme"]
