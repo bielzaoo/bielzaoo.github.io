@@ -22,7 +22,7 @@ Trata-se de uma máquina Windows, um ambiente ideal para treinar um pouco a expl
 ## Ambiente
 
 - SO atacante: Kali Linux
-- Ferramentas principais: `nmap`, `mosquitto_sub` e `mosquitto_pub`.
+- Ferramentas principais: `nmap`, `crackmapexec`, `GetPUsers.py`, `smbmap` .
 
 ## Ataque
 
@@ -129,11 +129,11 @@ SMBMap - Samba Share Enumerator v1.10.7 | Shawn Evans - ShawnDEvans@gmail.com
 [*] Closed 1 connections                                                                                                    
 
 ```
-Ponha qualquer usuário teste ali, eu coloquei `biel`, apenas para teste. 
+Ponha qualquer usuário teste ali, eu coloquei `biel` , apenas para teste. 
 Excelente! veja que temos permissão de leitura em alguns compartilhamentos. Para te adiantar, li e não encontrei nada útil nesses compartilhamentos que podemos ler, mas sugiro dar uma olhada sempre.
 
 RID Bruteforce
-Beleza, já que podemos “conversar” com o SMB mesmo sem um usuário válido, uma boa abordagem seria tentar fazer um  RID bruteforce. 
+Beleza, já que podemos "conversar" com o SMB mesmo sem um usuário válido, uma boa abordagem seria tentar fazer um  RID bruteforce. 
 Essa técnica, basicamente, consiste em tentar achar RID válidos que identificam usuários existentes no ambiente. Sugiro dar uma pesquisada mais sobre, vale a pena.
 
 Talvez você se pergunte para que isso? O lance é que com uma lista de usuários válidos, tentaremos executar um ASREP-Roasting. 
@@ -213,7 +213,7 @@ Excelente! Conseguimos a hash do usuário `t-skid`, vamos fazer um cracking dela
 Aqui vai uma dica, quando não souber qual formato indicar para o John, basta dar um:
 
 ```plaintext
-john –list=formats | grep “<tipo_hash>”
+john –list=formats | grep “tipo_hash”
 ```
 
 Ou então, uma pesquisa no Google deve resolver!
