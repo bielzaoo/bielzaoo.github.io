@@ -21,7 +21,7 @@ Trata-se de uma máquina Windows, um ambiente ideal para treinar um pouco a expl
 ## Ambiente
 
 - SO atacante: Kali Linux
-- Ferramentas principais: `nmap`, `crackmapexec`, `GetPUsers.py`, `smbmap` .
+- Ferramentas principais: `nmap`, `crackmapexec`, `GetNPUsers.py`, `smbmap` .
 
 ## Ataque
 
@@ -541,4 +541,8 @@ nt authority\system
 
 Agora é só ir atrás das flags!
 
-## Conclusão
+---
+
+Top demais essa sala! Veja que é bem nível easy mesmo e dá para treinar de boas exploração em ambientes Windows!  
+Bem, é isso! Até a próxima!
+Fique com Deus!
