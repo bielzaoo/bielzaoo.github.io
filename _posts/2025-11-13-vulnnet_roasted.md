@@ -5,7 +5,7 @@ categories: [writeups]
 tags: ["writeups","ctf","tryhackme"]
 ---
 
-![VulnNet-Roasted]("../assets/img/vulnnet_roasted/vulnNet_roasted.png")
+![VulnNet-Roasted](../assets/img/vulnnet_roasted/vulnNet_roasted.png)
 
 # VulnNet - Roasted
 
