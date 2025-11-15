@@ -4,10 +4,9 @@ date: 2025-11-13 00:00:00 +0000
 categories: [writeups]
 tags: ["writeups","ctf","tryhackme"]
 ---
-
 ![VulnNet-Roasted](../assets/img/vulnnet_roasted/vulnNet_roasted.png)
 
-# VulnNet - Roasted
+# VulnNet: Roasted
 
 | Plataforma | Dificuldade | OS |
 | --------------- | --------------- | --------------- |
