@@ -1,5 +1,5 @@
 ---
-title: Rabbit Store | TryHackMe
+title: Mass Assignment , SSRF, SSTI + RCE | Rabbit Store | TryHackMe
 date: 2026-03-04 00:00:00 +0000
 categories:
   - writeups
@@ -18,6 +18,7 @@ Uma excelente oportunidade para treinar SSRF, SSTI, RCE e Mass Assignment! além
 | Difivuldade        | Medium                                                 |
 | Vulnerabilidades   | Mass Assignment, SSRF, SSTI, RCE                       |
 | Link               | [Rabbit Store](https://tryhackme.com/room/rabbitstore) |
+
 ## Atacando...
 ### Recon
 Vamos começar pelo bom e velho recon, um recon ruim, a probabilidade de um ataque falhar é alta. Gosto sempre de começar por um recon mais simples, para te ruma noção de quais serviços vou encarar na máquina é só então em cima desses serviços faço um recon mais apurado. 
