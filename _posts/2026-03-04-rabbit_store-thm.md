@@ -514,4 +514,8 @@ Agora basta pegar a flag root!
 --- 
 
 # Conclusão
-Excelente cenário para treinar Web, não acha? Três vulnerabilidades web em uma só máquina! Muito divertido e bastante aprendizado! Muito obrigado! Nos vemos em breve!  E sinta-se à vontade para entrar em contato comigo caso queira!
+Excelente cenário para treinar Web, não acha? Três vulnerabilidades web em uma só máquina! Muito divertido e bastante aprendizado! 
+
+Muito obrigado! 
+Nos vemos em breve! 
+E sinta-se à vontade para entrar em contato comigo caso queira!
