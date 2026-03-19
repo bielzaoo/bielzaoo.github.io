@@ -12,6 +12,7 @@ tags:
   - cors
 ---
 # CORS Series: Qualquer origem serve...
+
 ## Sobre a "série"...
 Será um série de posts (uns dois ou três, talvez), sobre exploração de CORS mal implementado, de forma mais prática prática. Caso precise da base teórica, irei te passar onde buscar. Mas o foco aqui vai ser te guiar, de forma mais prática a explorar má implementações de CORS.
 
